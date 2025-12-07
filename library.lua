@@ -179,7 +179,9 @@ function Saturn.CreateLib(kavName, themeList)
         themeList = themeStyles.Synapse
     elseif themeList == "Serpent" then
         themeList = themeStyles.Serpent
-    else
+    elseif themeList == "Saturn" then
+        themeList = themeStyles.Saturn
+        
         if themeList.SchemeColor == nil then
             themeList.SchemeColor = Color3.fromRGB(74, 99, 135)
         elseif themeList.Background == nil then
