@@ -2,6 +2,7 @@
 --// to the people who are still forking this unoptimized garbage, if you want a custom optimized rewrite for $, hmu on discord: federal6768 or federal.
 
 local Saturn = {}
+Saturn._ScreenGui = nil
 
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
@@ -164,10 +165,12 @@ end)
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function Saturn:ToggleUI()
-    if game.CoreGui[LibName].Enabled then
-        game.CoreGui[LibName].Enabled = false
-    else
-        game.CoreGui[LibName].Enabled = true
+    if self._ScreenGui then
+        if self._ScreenGui.Enabled then
+            self._ScreenGui.Enabled = false
+        else
+            self._ScreenGui.Enabled = true
+        end
     end
 end
 
@@ -228,10 +231,17 @@ function Saturn.CreateLib(kavName, themeList)
     blurFrame.Size = UDim2.new(0, 376, 0, 289)
     blurFrame.ZIndex = 999
 
+    Saturn._ScreenGui = ScreenGui
     ScreenGui.Parent = game.CoreGui
     ScreenGui.Name = LibName
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
+
+    input.InputBegan:Connect(function(key)
+        if key.KeyCode == Enum.KeyCode.K and not key.Handled then
+            Saturn:ToggleUI()
+        end
+    end)
 
     Main.Name = "Main"
     Main.Parent = ScreenGui
@@ -2646,10 +2656,5 @@ function Saturn.CreateLib(kavName, themeList)
         end
         return Tabs
     end
-input.InputBegan:Connect(function(key)
-    if key.KeyCode == Enum.KeyCode.K and not key.Handled then
-        Saturn:ToggleUI()
-    end
-end)
-
 return Saturn
+end
