@@ -1,7 +1,7 @@
 --// to the 2 peoplee who are constantly watching this repo, get a life yall weird.
 --// to the people who are still forking this unoptimized garbage, if you want a custom optimized rewrite for $, hmu on discord: federal6768 or federal.
 
-local Saturn = {}
+local Kavo = {}
 
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
@@ -10,7 +10,7 @@ local run = game:GetService("RunService")
 
 local Utility = {}
 local Objects = {}
-function Saturn:DraggingEnabled(frame, parent)
+function Kavo:DraggingEnabled(frame, parent)
         
     parent = parent or frame
     
@@ -122,7 +122,7 @@ local themeStyles = {
         TextColor = Color3.fromRGB(255,255,255),
         ElementColor = Color3.fromRGB(22, 29, 31)
     },
-    Saturn = {
+    Kavo = {
         SchemeColor   = Color3.fromRGB(180, 65, 85), 
         Background    = Color3.fromRGB(25, 28, 35),    
         Header        = Color3.fromRGB(45, 30, 95),  
@@ -136,7 +136,7 @@ local SettingsT = {
 
 }
 
-local Name = "SaturnConfig.JSON"
+local Name = "KavoConfig.JSON"
 
 pcall(function()
 
@@ -149,7 +149,7 @@ end)
 
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
-function Saturn:ToggleUI()
+function Kavo:ToggleUI()
     if game.CoreGui[LibName].Enabled then
         game.CoreGui[LibName].Enabled = false
     else
@@ -157,7 +157,7 @@ function Saturn:ToggleUI()
     end
 end
 
-function Saturn.CreateLib(kavName, themeList)
+function Kavo.CreateLib(kavName, themeList)
     if not themeList then
         themeList = themes
     end
@@ -179,9 +179,9 @@ function Saturn.CreateLib(kavName, themeList)
         themeList = themeStyles.Synapse
     elseif themeList == "Serpent" then
         themeList = themeStyles.Serpent
-    elseif themeList == "Saturn" then
-        themeList = themeStyles.Saturn
-        
+    elseif themeList == "Kavo" then
+        themeList = themeStyles.Kavo
+    else
         if themeList.SchemeColor == nil then
             themeList.SchemeColor = Color3.fromRGB(74, 99, 135)
         elseif themeList.Background == nil then
@@ -198,7 +198,7 @@ function Saturn.CreateLib(kavName, themeList)
     themeList = themeList or {}
     local selectedTab 
     kavName = kavName or "Library"
-    table.insert(Saturn, kavName)
+    table.insert(Kavo, kavName)
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
             v:Destroy()
@@ -223,7 +223,7 @@ function Saturn.CreateLib(kavName, themeList)
 
     local blurFrame = Instance.new("Frame")
 
-    Saturn:DraggingEnabled(MainHeader, Main)
+    Kavo:DraggingEnabled(MainHeader, Main)
 
     blurFrame.Name = "blurFrame"
     blurFrame.Parent = pages
@@ -364,7 +364,7 @@ function Saturn.CreateLib(kavName, themeList)
         end
     end)()
 
-    function Saturn:ChangeColor(prope,color)
+    function Kavo:ChangeColor(prope,color)
         if prope == "Background" then
             themeList.Background = color
         elseif prope == "SchemeColor" then
@@ -2654,4 +2654,4 @@ function Saturn.CreateLib(kavName, themeList)
     end  
     return Tabs
 end
-return Saturn
+return Kavo
