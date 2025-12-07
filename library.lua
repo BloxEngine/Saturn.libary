@@ -2644,14 +2644,12 @@ function Saturn.CreateLib(kavName, themeList)
             end	
             return Elements
         end
-        return Sections
-    end  
-    return Tabs
-end
-return Saturn
-
+        return Tabs
+    end
 input.InputBegan:Connect(function(key)
     if key.KeyCode == Enum.KeyCode.K and not key.Handled then
         Saturn:ToggleUI()
     end
 end)
+
+return Saturn
