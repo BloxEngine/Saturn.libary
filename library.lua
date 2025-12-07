@@ -123,11 +123,25 @@ local themeStyles = {
         ElementColor = Color3.fromRGB(22, 29, 31)
     },
     Saturn = {
-        SchemeColor   = Color3.fromRGB(180, 65, 85), 
+        SchemeColor   = Color3.fromRGB(120, 50, 70), 
         Background    = Color3.fromRGB(25, 28, 35),    
-        Header        = Color3.fromRGB(45, 30, 95),  
+        Header        = Color3.fromRGB(35, 30, 45),  
         TextColor     = Color3.fromRGB(240, 240, 255), 
-        ElementColor  = Color3.fromRGB(18, 22, 25)    
+        ElementColor  = Color3.fromRGB(25, 28, 35)    
+    },
+    Emerald = {
+        SchemeColor   = Color3.fromRGB(34, 139, 34),
+        Background    = Color3.fromRGB(20, 40, 20),
+        Header        = Color3.fromRGB(40, 80, 40),
+        TextColor     = Color3.fromRGB(240, 255, 240),
+        ElementColor  = Color3.fromRGB(25, 50, 25)
+    },
+    Amethyst = {
+        SchemeColor   = Color3.fromRGB(153, 102, 204),
+        Background    = Color3.fromRGB(30, 20, 40),
+        Header        = Color3.fromRGB(60, 40, 80),
+        TextColor     = Color3.fromRGB(250, 240, 255),
+        ElementColor  = Color3.fromRGB(40, 30, 50)
     }
 }
 local oldTheme = ""
@@ -2635,3 +2649,9 @@ function Saturn.CreateLib(kavName, themeList)
     return Tabs
 end
 return Saturn
+
+input.InputBegan:Connect(function(key)
+    if key.KeyCode == Enum.KeyCode.K and not key.Handled then
+        Saturn:ToggleUI()
+    end
+end)
