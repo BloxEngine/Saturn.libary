@@ -1,7 +1,7 @@
 --// to the 2 peoplee who are constantly watching this repo, get a life yall weird.
 --// to the people who are still forking this unoptimized garbage, if you want a custom optimized rewrite for $, hmu on discord: federal6768 or federal.
 
-local Kavo = {}
+local Saturn = {}
 
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
@@ -10,7 +10,7 @@ local run = game:GetService("RunService")
 
 local Utility = {}
 local Objects = {}
-function Kavo:DraggingEnabled(frame, parent)
+function Saturn:DraggingEnabled(frame, parent)
         
     parent = parent or frame
     
@@ -122,7 +122,7 @@ local themeStyles = {
         TextColor = Color3.fromRGB(255,255,255),
         ElementColor = Color3.fromRGB(22, 29, 31)
     },
-    Kavo = {
+    Saturn = {
         SchemeColor   = Color3.fromRGB(180, 65, 85), 
         Background    = Color3.fromRGB(25, 28, 35),    
         Header        = Color3.fromRGB(45, 30, 95),  
@@ -136,7 +136,7 @@ local SettingsT = {
 
 }
 
-local Name = "KavoConfig.JSON"
+local Name = "SaturnConfig.JSON"
 
 pcall(function()
 
@@ -149,7 +149,7 @@ end)
 
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
-function Kavo:ToggleUI()
+function Saturn:ToggleUI()
     if game.CoreGui[LibName].Enabled then
         game.CoreGui[LibName].Enabled = false
     else
@@ -157,48 +157,28 @@ function Kavo:ToggleUI()
     end
 end
 
-function Kavo.CreateLib(kavName, themeList)
-    if not themeList then
-        themeList = themes
-    end
-    if themeList == "DarkTheme" then
-        themeList = themeStyles.DarkTheme
-    elseif themeList == "LightTheme" then
-        themeList = themeStyles.LightTheme
-    elseif themeList == "BloodTheme" then
-        themeList = themeStyles.BloodTheme
-    elseif themeList == "GrapeTheme" then
-        themeList = themeStyles.GrapeTheme
-    elseif themeList == "Ocean" then
-        themeList = themeStyles.Ocean
-    elseif themeList == "Midnight" then
-        themeList = themeStyles.Midnight
-    elseif themeList == "Sentinel" then
-        themeList = themeStyles.Sentinel
-    elseif themeList == "Synapse" then
-        themeList = themeStyles.Synapse
-    elseif themeList == "Serpent" then
-        themeList = themeStyles.Serpent
-    elseif themeList == "Kavo" then
-        themeList = themeStyles.Kavo
-    else
-        if themeList.SchemeColor == nil then
-            themeList.SchemeColor = Color3.fromRGB(74, 99, 135)
-        elseif themeList.Background == nil then
-            themeList.Background = Color3.fromRGB(36, 37, 43)
-        elseif themeList.Header == nil then
-            themeList.Header = Color3.fromRGB(28, 29, 34)
-        elseif themeList.TextColor == nil then
-            themeList.TextColor = Color3.fromRGB(255,255,255)
-        elseif themeList.ElementColor == nil then
-            themeList.ElementColor = Color3.fromRGB(32, 32, 38)
+function Saturn.CreateLib(kavName, themeList)
+    if type(themeList) == "string" then
+        if themeStyles[themeList] then
+            themeList = themeStyles[themeList]
+        else
+            themeList = themeStyles.Saturn -- Standardmäßig Saturn, wenn ungültiger String übergeben wird
         end
+    elseif type(themeList) ~= "table" then
+        themeList = themeStyles.Saturn -- Standardmäßig Saturn, wenn kein oder ungültiger Typ übergeben wird
     end
+
+    -- Sicherstellen, dass alle Theme-Eigenschaften gesetzt sind
+    themeList.SchemeColor = themeList.SchemeColor or Color3.fromRGB(180, 65, 85)
+    themeList.Background = themeList.Background or Color3.fromRGB(25, 28, 35)
+    themeList.Header = themeList.Header or Color3.fromRGB(45, 30, 95)
+    themeList.TextColor = themeList.TextColor or Color3.fromRGB(240, 240, 255)
+    themeList.ElementColor = themeList.ElementColor or Color3.fromRGB(18, 22, 25)
 
     themeList = themeList or {}
     local selectedTab 
     kavName = kavName or "Library"
-    table.insert(Kavo, kavName)
+    table.insert(Saturn, kavName)
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
             v:Destroy()
@@ -223,7 +203,7 @@ function Kavo.CreateLib(kavName, themeList)
 
     local blurFrame = Instance.new("Frame")
 
-    Kavo:DraggingEnabled(MainHeader, Main)
+    Saturn:DraggingEnabled(MainHeader, Main)
 
     blurFrame.Name = "blurFrame"
     blurFrame.Parent = pages
@@ -364,7 +344,7 @@ function Kavo.CreateLib(kavName, themeList)
         end
     end)()
 
-    function Kavo:ChangeColor(prope,color)
+    function Saturn:ChangeColor(prope,color)
         if prope == "Background" then
             themeList.Background = color
         elseif prope == "SchemeColor" then
@@ -2654,4 +2634,4 @@ function Kavo.CreateLib(kavName, themeList)
     end  
     return Tabs
 end
-return Kavo
+return Saturn
