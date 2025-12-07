@@ -2652,9 +2652,9 @@ function Saturn.CreateLib(kavName, themeList)
                 end	
                 return labelFunctions
             end	
-            return Elements
+            Saturn.Elements = Elements
         end
-        return Tabs
+        Saturn.Tabs = Tabs
     end
 end
 return Saturn
